@@ -18,7 +18,7 @@ import rokomari.java.recruit.restfulinpeace.service.UserService;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("")
 public class UserController {
 	
 	@Autowired
