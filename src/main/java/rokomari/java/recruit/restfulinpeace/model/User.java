@@ -23,53 +23,54 @@ import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import rokomari.java.recruit.restfulinpeace.lib.annotations.UniqueEntry;
-import rokomari.java.recruit.restfulinpeace.service.UserService;
-
-
 @Entity
 @Table(name="user")
 public class User {
 
+	@Column
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column
 	@NotNull
 	@Size(min=3, max=255, message = "{user.first_name.overflow}")
 	private String first_name;
 	
+	@Column
 	@NotNull
 	@Size(min=3, max=255, message = "{user.last_name.overflow}")
 	private String last_name;
 	
-	@Email(message = "{user.email.invalid}")
-	@UniqueEntry(fieldName = "email", service = UserService.class)
+	@Column
+	@Email()
 	private String email;
 	
+	@Column
 	@NotNull
-	@Size(min=2, max=30, message = "{user.mobile.overflow}")
 	private String mobile;
 	
+	@Column
 	@NotNull
-	@Size(min=5, message="{user.password.tooshort}")
 	private String password;
 	
-	@Column(nullable = true)
+	@Column(name="verify_url", nullable = false, columnDefinition = "varchar(255) default 'anything can be'")
 	private String verify_url;
 	
 	@NotNull
 	@Column(columnDefinition = "TINYINT(1) default 0")
 	private boolean verified;
 	
+	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date created;
 	
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "role_id") })
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "user_role",
+		joinColumns = { @JoinColumn(name = "user_id", referencedColumnName="id") },
+		inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName="id") })
 	private Set<Role> roles;
 	
 	

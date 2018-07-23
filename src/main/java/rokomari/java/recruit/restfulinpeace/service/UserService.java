@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService, FieldValueExists {
 	public User save(User user) {
 		final String encodedPassoword = passwordEncoder().encode(user.getPassword());
 		user.setPassword(encodedPassoword);
-		return userRepository.save(user);
+		return this.userRepository.save(user);
 	}
 	
 	/**
@@ -48,17 +48,21 @@ public class UserService implements UserDetailsService, FieldValueExists {
 	 * @return
 	 */
 	public List<User> getAll(){
-		return (List<User>) userRepository.findAll();
+		return (List<User>) this.userRepository.findAll();
 	}
 	
 	
 	public Optional<User> findOne(Long id) {
-		return userRepository.findById(id);
+		return this.userRepository.findById(id);
 	}
 
 	
 	@Override
 	public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
+		
+		
+		
+		System.out.println("/************************ fieldValueExists ? ************************************");
 		
 		//should uncomment this for allowing only specific fields validation
 		
@@ -68,11 +72,11 @@ public class UserService implements UserDetailsService, FieldValueExists {
 		
 		
 		//is it necessary while we are using hibernate validation? before or after? need to find out!
-		if (value == null) {
+		if (value == null || fieldName == null) {
             return false;
         }
 		
-		return userRepository.existsByEmail(value.toString());
+		return this.userRepository.existsByEmail(value.toString());
 	}
 
 	/**
@@ -81,7 +85,7 @@ public class UserService implements UserDetailsService, FieldValueExists {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
-		User user = userRepository.findByEmail(email);
+		User user = this.userRepository.findByEmail(email);
 		
 		if(user == null){
 			throw new UsernameNotFoundException("Invalid email or password.");

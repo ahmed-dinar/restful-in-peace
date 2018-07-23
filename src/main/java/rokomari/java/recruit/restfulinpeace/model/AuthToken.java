@@ -1,5 +1,6 @@
 package rokomari.java.recruit.restfulinpeace.model;
 
+
 public class AuthToken {
 
 	private String token;

@@ -6,7 +6,7 @@ import rokomari.java.recruit.restfulinpeace.model.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 	
-	boolean existsByEmail(String foo);
+	boolean existsByEmail(String email);
 
 	User findByEmail(String email);
 	
