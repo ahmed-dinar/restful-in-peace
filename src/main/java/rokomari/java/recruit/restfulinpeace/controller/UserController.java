@@ -29,7 +29,7 @@ public class UserController {
 		return userService.save(user);
 	}
 	
-	@RequestMapping(value="/all", method = RequestMethod.GET)
+	@RequestMapping(value="/user/all", method = RequestMethod.GET)
 	public List<User> findAll() {
 		return (List<User>) userService.getAll();
 	}

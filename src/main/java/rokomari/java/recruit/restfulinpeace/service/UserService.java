@@ -18,11 +18,10 @@ import org.springframework.stereotype.Service;
 import rokomari.java.recruit.restfulinpeace.repository.UserRepository;
 import rokomari.java.recruit.restfulinpeace.model.User;
 
-import rokomari.java.recruit.restfulinpeace.lib.interfaces.FieldValueExists;
 
 
 @Service
-public class UserService implements UserDetailsService, FieldValueExists {
+public class UserService implements UserDetailsService {
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -57,27 +56,6 @@ public class UserService implements UserDetailsService, FieldValueExists {
 	}
 
 	
-	@Override
-	public boolean fieldValueExists(Object value, String fieldName) throws UnsupportedOperationException {
-		
-		
-		
-		System.out.println("/************************ fieldValueExists ? ************************************");
-		
-		//should uncomment this for allowing only specific fields validation
-		
-		if (!fieldName.equals("email")) {
-            throw new UnsupportedOperationException("Field name not supported");
-        }
-		
-		
-		//is it necessary while we are using hibernate validation? before or after? need to find out!
-		if (value == null || fieldName == null) {
-            return false;
-        }
-		
-		return this.userRepository.existsByEmail(value.toString());
-	}
 
 	/**
 	 * 

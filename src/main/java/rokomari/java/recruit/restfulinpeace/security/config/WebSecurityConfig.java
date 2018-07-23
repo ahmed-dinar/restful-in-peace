@@ -24,8 +24,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Resource(name = "userService")
 	private UserDetailsService userDetailsService;
-	
-
 
 	@Autowired
 	private JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -45,21 +43,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public JwtAuthenticationFilter authenticationTokenFilterBean() {
 		return new JwtAuthenticationFilter();
 	}
+	
+	@Bean
+	public APIKeyAuthFilter apiKeyFilterBean() {
+		return new APIKeyAuthFilter();
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
-		System.out.println("llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
-
-		
+	
 		http
 		.cors().and().csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/login/**", "/register").permitAll()
+		.antMatchers("/login/**", "/register", "/user/**", "/apikey").permitAll()
 		.anyRequest().authenticated()
 		.and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
+		http.addFilterBefore(apiKeyFilterBean(), UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 	}
 
