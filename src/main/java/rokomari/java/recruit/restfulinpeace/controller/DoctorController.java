@@ -30,6 +30,7 @@ public class DoctorController {
 	private DoctorService doctorService;
 
 	
+
 	@RequestMapping(value="/insert/doctor/new", method = RequestMethod.POST)
 	public ResponseEntity<Object> createDoctor(@Valid @RequestBody Doctor doctor) {
 		doctorService.save(doctor);

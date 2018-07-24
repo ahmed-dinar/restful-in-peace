@@ -27,8 +27,8 @@ public class AuthenticationController {
     @Autowired
     private TokenProvider jwtTokenUtil;
     
-    @Autowired
-    private ApiKeyProvider keyProvider;
+/*    @Autowired
+    private ApiKeyProvider keyProvider;*/
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -56,7 +56,7 @@ public class AuthenticationController {
     @RequestMapping(value = "/apikey", method = RequestMethod.GET)
     public ResponseEntity<?> getApiKey() {
     	
-    	String genkey = keyProvider.generateKey();
+    	String genkey = new ApiKeyProvider().generateKey();
     	
     	System.out.println(genkey);
     	

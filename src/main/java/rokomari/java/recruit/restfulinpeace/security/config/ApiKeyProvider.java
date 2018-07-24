@@ -7,19 +7,19 @@ import static rokomari.java.recruit.restfulinpeace.model.Constants.API_ISSUER;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@Component
+
 public class ApiKeyProvider implements Serializable {
 	
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	public ApiKeyProvider(){}
 
 
 	public String generateKey() {
@@ -38,6 +38,9 @@ public class ApiKeyProvider implements Serializable {
 	    Claims claims = Jwts.parser()         
 	        .setSigningKey(API_SIGNING_KEY)
 	        .parseClaimsJws(key).getBody();
+	    
+	    System.out.println("CLAIMS--");
+	    System.out.println(claims);
 
     	return claims.getSubject().equals(API_SUBJECT) && claims.getIssuer().equals(API_ISSUER);
     }

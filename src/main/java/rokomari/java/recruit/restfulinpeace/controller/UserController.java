@@ -1,14 +1,12 @@
 package rokomari.java.recruit.restfulinpeace.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +30,7 @@ public class UserController {
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public ResponseEntity<Object> registerUser(@Valid @RequestBody User user) {
 		
-		//should replace with custom validator annotation
+		//should replace with custom validatsor annotation
 		User usrExists = userService.findbyEmail(user.getEmail());
 		
 		if( usrExists != null && usrExists.getId() != null ) {
@@ -49,7 +47,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+/*	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Optional<User>> getUserById(@PathVariable(value="id") Long id) {
 		Optional<User> user = userService.findOne(id);
 		
@@ -59,5 +57,5 @@ public class UserController {
 		
 		return ResponseEntity.ok().body(user);
 	}
-	
+	*/
 }

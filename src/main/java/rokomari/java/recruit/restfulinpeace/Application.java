@@ -8,6 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+
 @SpringBootApplication
 @PropertySource("classpath:application.properties")
 public class Application {
@@ -34,9 +35,9 @@ public class Application {
         bean.setValidationMessageSource(messageSource());
         return bean;
     }
-
+	
 	/**
-	 * start our app!
+	 * start our !
 	 * @param args
 	 */
 	public static void main(String[] args) {

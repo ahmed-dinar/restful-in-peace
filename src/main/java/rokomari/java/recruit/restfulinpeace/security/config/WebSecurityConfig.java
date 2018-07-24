@@ -45,10 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new JwtAuthenticationFilter();
 	}
 	
-	@Bean
-	public APIKeyAuthFilter apiKeyFilterBean() {
-		return new APIKeyAuthFilter();
-	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -56,12 +52,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.cors().and().csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/login/**", "/register", "/user/**", "/apikey").permitAll()
+		.antMatchers("/login/**", "/register/**", "/v2/api-docs/**", "/configuration/ui/**", "/swagger-resources/**", "/configuration/security/**", "/swagger-ui.html", "/webjars/**").permitAll() //for jwt tokens
 		.anyRequest().authenticated()
 		.and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
-		http.addFilterBefore(apiKeyFilterBean(), UsernamePasswordAuthenticationFilter.class);
+		http.addFilterBefore(new APIKeyAuthFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 	}
 	
@@ -71,9 +67,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-	    web
-	      .ignoring()
-	        .antMatchers("/apikey", "/user/all");
+		web
+		.ignoring()
+		.antMatchers("/apikey/**", "/v2/api-docs/**", "/configuration/ui/**", "/swagger-resources/**", "/configuration/security/**", "/swagger-ui.html", "/webjars/**"); //for api key
 	}
 
 	@Bean

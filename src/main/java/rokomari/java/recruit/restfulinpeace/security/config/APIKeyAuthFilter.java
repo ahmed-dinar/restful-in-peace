@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import io.jsonwebtoken.ClaimJwtException;
@@ -21,9 +20,6 @@ import static rokomari.java.recruit.restfulinpeace.model.Constants.API_KEY_HEADE
 
 
 public class APIKeyAuthFilter extends OncePerRequestFilter {
-	
-	@Autowired
-	private ApiKeyProvider apiKeyUtil;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -32,9 +28,12 @@ public class APIKeyAuthFilter extends OncePerRequestFilter {
 		String apiKey = request.getHeader(API_KEY_HEADER);
 		boolean validApi = false;
 		
+		System.out.println("api key--");
+		System.out.println(apiKey);
+		
 		if( apiKey != null ) {
 			try {
-				validApi = apiKeyUtil.validateKey(apiKey);
+				validApi = new ApiKeyProvider().validateKey(apiKey);
 			}
 			catch (ClaimJwtException e) {
 				logger.error("an error occured ClaimJwtException api key", e);
@@ -49,7 +48,7 @@ public class APIKeyAuthFilter extends OncePerRequestFilter {
 				logger.error("an error occured UnsupportedJwtException api key", e);
 			} 
 			catch (Exception e) {
-			
+				logger.error("an error EXCEPTION", e);
 			}
 		}
 		
