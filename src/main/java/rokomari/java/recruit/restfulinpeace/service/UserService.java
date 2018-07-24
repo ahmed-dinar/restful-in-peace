@@ -54,6 +54,11 @@ public class UserService implements UserDetailsService {
 	public Optional<User> findOne(Long id) {
 		return this.userRepository.findById(id);
 	}
+	
+	
+	public User findbyEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
 
 	
 

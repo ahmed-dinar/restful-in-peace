@@ -16,7 +16,7 @@ public class PatientService {
 	PatientRepository patientRepository;
 	
 	/**
-	 * @param doctor
+	 * @param 
 	 * @return
 	 */
 	public Patient save(Patient patient) {
@@ -25,8 +25,8 @@ public class PatientService {
 	
 	
 	/**
-	 * ok, looks like same as save, need to find out more!
-	 * @param doctor
+	 * K, looks like same as save, need to find out more!
+	 * @param 
 	 * @return
 	 */
 	public Patient update(Patient patient) {

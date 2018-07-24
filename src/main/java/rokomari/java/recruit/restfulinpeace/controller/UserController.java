@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import rokomari.java.recruit.restfulinpeace.lib.Messages;
 import rokomari.java.recruit.restfulinpeace.model.User;
 import rokomari.java.recruit.restfulinpeace.service.UserService;
 
@@ -22,11 +24,23 @@ import rokomari.java.recruit.restfulinpeace.service.UserService;
 public class UserController {
 	
 	@Autowired
+    Messages messages;
+	
+	@Autowired
 	private UserService userService;
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public User registerUser(@Valid @RequestBody User user) {
-		return userService.save(user);
+	public ResponseEntity<Object> registerUser(@Valid @RequestBody User user) {
+		
+		//should replace with custom validator annotation
+		User usrExists = userService.findbyEmail(user.getEmail());
+		
+		if( usrExists != null && usrExists.getId() != null ) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(messages.json("400","Email already exixts"));
+		}
+		
+		userService.save(user);
+		return ResponseEntity.ok().body("{ \"status\": \"success\" }");
 	}
 	
 	@RequestMapping(value="/user/all", method = RequestMethod.GET)

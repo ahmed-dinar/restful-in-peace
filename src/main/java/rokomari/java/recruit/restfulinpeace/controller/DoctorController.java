@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import rokomari.java.recruit.restfulinpeace.lib.Messages;
 import rokomari.java.recruit.restfulinpeace.model.Doctor;
 import rokomari.java.recruit.restfulinpeace.service.DoctorService;
 
@@ -23,23 +24,27 @@ import rokomari.java.recruit.restfulinpeace.service.DoctorService;
 public class DoctorController {
 	
 	@Autowired
+    Messages messages;
+	
+	@Autowired
 	private DoctorService doctorService;
 
 	
 	@RequestMapping(value="/insert/doctor/new", method = RequestMethod.POST)
-	public Doctor createDoctor(@Valid @RequestBody Doctor doctor) {
-		return doctorService.save(doctor);
+	public ResponseEntity<Object> createDoctor(@Valid @RequestBody Doctor doctor) {
+		doctorService.save(doctor);
+		return ResponseEntity.ok().body("{ \"status\": \"success\" }");
 	}
 	
 	
 	@RequestMapping(value="/delete/doctors", method = RequestMethod.DELETE)
-	public ResponseEntity<Object> delete(@RequestHeader HttpHeaders headers) {
+	public ResponseEntity<Object> deleteDoctor(@RequestHeader HttpHeaders headers) {
 		
 		List<String> id = headers.get("doctor_id");
 		Long doctor_id = null;
 		
 		if(id == null || id.size() == 0) {
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
 		}
 		
 		try {
@@ -47,7 +52,7 @@ public class DoctorController {
 		}
 		catch (NumberFormatException e) {
 			System.out.println(e);
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
 		}
 		
 		doctorService.delete(doctor_id);
@@ -62,7 +67,7 @@ public class DoctorController {
 		Long doctor_id = null;
 		
 		if(id == null || id.size() == 0 || doctor == null) {
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.json("404", "doctor id required"));
 		}
 		
 		try {
@@ -76,17 +81,14 @@ public class DoctorController {
 		// there must be a better way!!
 		Optional<Doctor> docexists = doctorService.findOne(doctor_id);
 		
-		
-		System.out.println("docexists");
-		System.out.println(docexists);
-		
-		
+	
 		if( docexists == null || !docexists.isPresent() ) {
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.json("404", "no data found to update"));
 		}
-
+		
 		doctor.setId(doctor_id);
-		return ResponseEntity.ok().body(doctorService.save(doctor));
+		doctorService.save(doctor);
+		return ResponseEntity.ok().body("{ \"status\": \"updated\" }");
 	}
 	
 
@@ -113,8 +115,8 @@ public class DoctorController {
 
 		Optional<Doctor> doctor = doctorService.findOne(doctor_id);
 		
-		if(doctor == null) {
-			return ResponseEntity.notFound().build();
+		if(doctor == null || !doctor.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.json("404", "no data found"));
 		}
 		
 		return ResponseEntity.ok().body(doctor);
