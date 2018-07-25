@@ -22,8 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-//@EnableGlobalMethodSecurity(securedEnabled = true) 
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Resource(name = "userService")
@@ -54,8 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.cors().and().csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/login/**", "/register/**", "/v2/api-docs/**", "/configuration/ui/**", "/swagger-resources/**", "/configuration/security/**", "/swagger-ui.html", "/webjars/**").permitAll() //for jwt tokens
-		.antMatchers("/api/insert/**").hasRole("ADMIN")
+		.antMatchers("/login/**", "/register/**", "/v2/api-docs/**", "/configuration/ui/**", "/swagger-resources/**", "/configuration/security/**", "/swagger-ui.html", "/webjars/**").permitAll()
 		.anyRequest().authenticated()
 		.and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -75,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web
 		.ignoring()
-		.antMatchers("/apikey/**", "/v2/api-docs/**", "/configuration/ui/**", "/swagger-resources/**", "/configuration/security/**", "/swagger-ui.html", "/webjars/**"); //for api key
+		.antMatchers("/apikey/**", "/v2/**", "/configuration/ui/**", "/swagger-resources/**", "/configuration/security/**", "/swagger-ui.html", "/webjars/**");
 	}
 
 	@Bean

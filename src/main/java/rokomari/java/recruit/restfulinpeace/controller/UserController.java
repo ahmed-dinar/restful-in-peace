@@ -1,7 +1,10 @@
 package rokomari.java.recruit.restfulinpeace.controller;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -22,7 +25,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import rokomari.java.recruit.restfulinpeace.lib.Messages;
+import rokomari.java.recruit.restfulinpeace.model.Role;
 import rokomari.java.recruit.restfulinpeace.model.User;
+import rokomari.java.recruit.restfulinpeace.service.RoleService;
 import rokomari.java.recruit.restfulinpeace.service.UserService;
 
 
@@ -36,16 +41,24 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private RoleService roleService;
+	
 	@RequestMapping(value="/register", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registerUser(@Valid @RequestBody User user) {
 		
-		//should replace with custom  annotation
+		//should replace with custom annotation?
 		User usrExists = userService.findbyEmail(user.getEmail());
-		
 		if( usrExists != null && usrExists.getId() != null ) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(messages.json("400","Email already exixts"));
 		}
-
+		
+		//is this bad? find every time on every registration? hmmm?
+		Role role = roleService.createIfNotExists("USER");
+		Set<Role> roles = new HashSet<>(Arrays.asList(role));
+		
+		user.setRoles(roles);
+		
 		userService.save(user);
 		
 		JsonNode results = new ObjectMapper().createObjectNode();
@@ -69,7 +82,7 @@ public class UserController {
 	public ResponseEntity<Optional<User>> getUserById(@PathVariable(value="id") Long id) {
 		Optional<User> user = userService.findOne(id);
 		
-		if(user == null) {
+		if(user == null || !user.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		

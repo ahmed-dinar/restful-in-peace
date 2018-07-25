@@ -85,13 +85,13 @@ public class UserService implements UserDetailsService {
 
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
 		user.getRoles().forEach(role -> {
-            //authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toUpperCase()));
-			authorities.add(new SimpleGrantedAuthority(role.getName().toUpperCase()));
+			authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toUpperCase()));
 		});
 		
 		//if no role inserted, lets just make this a normal user
+		//what about auto insert during registration? hmm!
 		if( authorities.size() == 0 ) {
-			authorities.add(new SimpleGrantedAuthority("USER"));
+			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 		}
 		
 		return authorities;

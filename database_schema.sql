@@ -1,11 +1,9 @@
--- Server version: 10.1.34-MariaDB
-
+-- Server version: 10.1.33-MariaDB
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -15,6 +13,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `rokomari`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `id` int(11) NOT NULL,
+  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `prescription` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -30,7 +40,21 @@ CREATE TABLE `doctor` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `doctor_appointment`
+--
+
+CREATE TABLE `doctor_appointment` (
+  `id` int(11) NOT NULL,
+  `doctor_id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
 
 --
 -- Table structure for table `patient`
@@ -60,16 +84,6 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `role`
---
-
-INSERT INTO `role` (`id`, `name`, `status`) VALUES
-(4, 'admin', 'active'),
-(5, 'user', 'active');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
@@ -85,7 +99,6 @@ CREATE TABLE `user` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
 --
 -- Table structure for table `user_role`
@@ -97,15 +110,30 @@ CREATE TABLE `user_role` (
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `doctor`
 --
 ALTER TABLE `doctor`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `doctor_appointment`
+--
+ALTER TABLE `doctor_appointment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKersasokbu357ddmirty3aks7k` (`patient_id`),
+  ADD KEY `FKuurnj3pc0o1p3dwlvl4tm6us` (`doctor_id`);
 
 --
 -- Indexes for table `patient`
@@ -129,41 +157,73 @@ ALTER TABLE `user`
 -- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKa68196081fvovjhkek5m97n3y` (`role_id`),
+  ADD KEY `FK859n2jvi8ivhui0rl0esws6o` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `appointment`
+--
+ALTER TABLE `appointment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT for table `doctor_appointment`
+--
+ALTER TABLE `doctor_appointment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `doctor_appointment`
+--
+ALTER TABLE `doctor_appointment`
+  ADD CONSTRAINT `FKersasokbu357ddmirty3aks7k` FOREIGN KEY (`patient_id`) REFERENCES `appointment` (`id`),
+  ADD CONSTRAINT `FKuurnj3pc0o1p3dwlvl4tm6us` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`id`);
+
+--
+-- Constraints for table `user_role`
+--
+ALTER TABLE `user_role`
+  ADD CONSTRAINT `FK859n2jvi8ivhui0rl0esws6o` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FKa68196081fvovjhkek5m97n3y` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

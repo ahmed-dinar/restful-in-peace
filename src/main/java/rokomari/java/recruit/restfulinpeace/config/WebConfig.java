@@ -25,12 +25,18 @@ public class WebConfig implements WebMvcConfigurer  {
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+    	
+    	System.out.println("setting swagger addResourceHandlers");
+    	
         registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     @Bean
     public ViewResolver viewResolver() {
+    	
+    	System.out.println("setting swagger addResourceHandlers");
+    	
         final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/view/");
         viewResolver.setSuffix(".jsp");
@@ -39,6 +45,10 @@ public class WebConfig implements WebMvcConfigurer  {
 
     @Override
     public void addViewControllers(final ViewControllerRegistry registry) {
+    	/*registry.addRedirectViewController("/api/v2/api-docs", "/v2/api-docs");
+        registry.addRedirectViewController("/swagger-resources/configuration/ui");
+        registry.addRedirectViewController("/api/swagger-resources/configuration/security", "/swagger-resources/configuration/security");
+        registry.addRedirectViewController("/api/swagger-resources", "/swagger-resources");*/
     }
 
 }

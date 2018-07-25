@@ -3,7 +3,6 @@ package rokomari.java.recruit.restfulinpeace.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,6 +10,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -53,15 +53,22 @@ public class AuthenticationController {
         final String token = jwtTokenUtil.generateToken(authentication);
 
         User user = userService.findbyEmail(login.getEmail());
-        
+
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode companyNode = mapper.createObjectNode();
+        
+        //remove id from role array
+        //https://stackoverflow.com/a/15604304
+        ArrayNode array =  mapper.valueToTree(user.getRoles());
+        for (JsonNode personNode : array) {
+        	ObjectNode object = (ObjectNode) personNode;
+        	object.remove("id");
+        }
 
 		companyNode.put("status", "logged_in");
 		companyNode.put("first_names", user.getFirst_name());
 		companyNode.put("email", user.getEmail());
-		companyNode.putArray("roles").addAll((ArrayNode) mapper.valueToTree(user.getRoles()));
-		//companyNode.put("jwt_token", token);
+		companyNode.putArray("roles").addAll(array);
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.CONTENT_TYPE, "application/json; charset=UTF-8");
@@ -78,7 +85,7 @@ public class AuthenticationController {
      * @return
      * @throws AuthenticationException
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/apikey", method = RequestMethod.GET)
     public ResponseEntity<?> getApiKey() {
     	

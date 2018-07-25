@@ -1,12 +1,18 @@
 package rokomari.java.recruit.restfulinpeace.model;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,6 +53,12 @@ public class Patient {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date created;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinTable(name = "doctor_appointment",
+		joinColumns = { @JoinColumn(name = "patient_id", referencedColumnName="id") },
+		inverseJoinColumns = { @JoinColumn(name = "doctor_id", referencedColumnName="id") })
+	private Set<Appointment> appointments;
 	
 
 	public Long getId() {
@@ -111,6 +123,14 @@ public class Patient {
 
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+	
+	public Set<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(Set<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 
 }
