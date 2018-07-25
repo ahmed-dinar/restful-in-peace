@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -31,14 +32,14 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+
 	@RequestMapping(value="/insert/patient/new", method = RequestMethod.POST)
 	public ResponseEntity<Object> createPatient(@Valid @RequestBody Patient patient) {
 		patientService.save(patient);
 		return ResponseEntity.ok().body("{ \"status\": \"success\" }");
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+
 	@RequestMapping(value="/delete/patients", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> deletePatient(@RequestHeader HttpHeaders headers) {
 		
@@ -62,7 +63,6 @@ public class PatientController {
 	}
 	
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value="/update/patients", method = RequestMethod.PUT)
 	public ResponseEntity<Object> update(@Valid @RequestBody Patient patient, @RequestHeader HttpHeaders headers) {
 		
@@ -95,7 +95,7 @@ public class PatientController {
 	}
 	
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+
 	@RequestMapping(value="/patients", method = RequestMethod.GET)
 	public ResponseEntity<Object> findOne(@RequestHeader HttpHeaders headers) {
 		

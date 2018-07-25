@@ -1,4 +1,4 @@
--- Server version: 10.1.33-MariaDB
+-- Server version: 10.1.34-MariaDB
 
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -29,23 +29,6 @@ CREATE TABLE `doctor` (
   `joining` date NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `hibernate_sequence`
---
-
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `hibernate_sequence`
---
-
-INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(17);
 
 -- --------------------------------------------------------
 
@@ -81,9 +64,8 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `name`, `status`) VALUES
-(1, 'admin', 'active'),
-(2, 'super', 'active'),
-(3, 'user', 'active');
+(4, 'admin', 'active'),
+(5, 'user', 'active');
 
 -- --------------------------------------------------------
 
@@ -103,13 +85,6 @@ CREATE TABLE `user` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `mobile`, `password`, `verify_url`, `verified`, `created`) VALUES
-(16, 'Ahmed', 'Dinar', 'ahmedd.dinar@gmail.com', '01744597565', '$2a$10$BkZitB4eALRV7TvP4tNlMOzcWceP7GeAHUosh36BpRoMR8mlOIz02', NULL, 0, '2018-07-22 20:33:59');
-
 -- --------------------------------------------------------
 
 --
@@ -121,13 +96,6 @@ CREATE TABLE `user_role` (
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_role`
---
-
-INSERT INTO `user_role` (`id`, `user_id`, `role_id`) VALUES
-(1, 16, 1);
 
 --
 -- Indexes for dumped tables
@@ -161,9 +129,7 @@ ALTER TABLE `user`
 -- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FKa68196081fvovjhkek5m97n3y` (`role_id`),
-  ADD KEY `FK859n2jvi8ivhui0rl0esws6o` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -185,7 +151,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -198,17 +164,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `user_role`
---
-ALTER TABLE `user_role`
-  ADD CONSTRAINT `FK859n2jvi8ivhui0rl0esws6o` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `FKa68196081fvovjhkek5m97n3y` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

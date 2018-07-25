@@ -1,6 +1,7 @@
 package rokomari.java.recruit.restfulinpeace.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -60,9 +61,13 @@ public class AuthenticationController {
 		companyNode.put("first_names", user.getFirst_name());
 		companyNode.put("email", user.getEmail());
 		companyNode.putArray("roles").addAll((ArrayNode) mapper.valueToTree(user.getRoles()));
-		companyNode.put("jwt_token", token);
+		//companyNode.put("jwt_token", token);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.CONTENT_TYPE, "application/json; charset=UTF-8");
+		headers.add("jwt_token", token);
 
-        return ResponseEntity.ok().body(companyNode);
+        return ResponseEntity.ok().headers(headers).body(companyNode);
     }
     
     

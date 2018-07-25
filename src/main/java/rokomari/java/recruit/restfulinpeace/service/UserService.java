@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -39,6 +40,9 @@ public class UserService implements UserDetailsService {
 	public User save(User user) {
 		final String encodedPassoword = passwordEncoder().encode(user.getPassword());
 		user.setPassword(encodedPassoword);
+		
+		user.setVerify_url(UUID.randomUUID().toString());
+		
 		return this.userRepository.save(user);
 	}
 	
@@ -60,7 +64,6 @@ public class UserService implements UserDetailsService {
 		return userRepository.findByEmail(email);
 	}
 
-	
 
 	/**
 	 * 
@@ -82,12 +85,13 @@ public class UserService implements UserDetailsService {
 
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
 		user.getRoles().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toUpperCase()));
+            //authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toUpperCase()));
+			authorities.add(new SimpleGrantedAuthority(role.getName().toUpperCase()));
 		});
 		
 		//if no role inserted, lets just make this a normal user
 		if( authorities.size() == 0 ) {
-			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+			authorities.add(new SimpleGrantedAuthority("USER"));
 		}
 		
 		return authorities;

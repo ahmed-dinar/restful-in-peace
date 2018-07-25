@@ -2,7 +2,6 @@ package rokomari.java.recruit.restfulinpeace.model;
 
 import java.util.Date;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,10 +21,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-
 import javax.persistence.JoinColumn;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -67,11 +64,9 @@ public class User {
 	//@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "only alphabet and numeric characters are allowed")
 	private String password;
 	
-	
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-	@Column(name="verify_url", nullable = false, columnDefinition = "varchar(255)")
-	private UUID verify_url;
+
+	@Column(name="verify_url")
+	private String verify_url;
 	
 	
 	@NotNull
@@ -127,10 +122,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public UUID getVerify_url() {
+	public String getVerify_url() {
 		return verify_url;
 	}
-	public void setVerify_url(UUID verify_url) {
+	public void setVerify_url(String verify_url) {
 		this.verify_url = verify_url;
 	}
 	public boolean getVerified() {

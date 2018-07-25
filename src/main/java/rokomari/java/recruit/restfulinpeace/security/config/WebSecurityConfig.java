@@ -22,8 +22,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(securedEnabled = true) 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Resource(name = "userService")
@@ -55,11 +55,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.cors().and().csrf().disable()
 		.authorizeRequests()
 		.antMatchers("/login/**", "/register/**", "/v2/api-docs/**", "/configuration/ui/**", "/swagger-resources/**", "/configuration/security/**", "/swagger-ui.html", "/webjars/**").permitAll() //for jwt tokens
+		.antMatchers("/api/insert/**").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
-		//K, leave the cors for now!
+		//K, leave the c o r s for now!
 		//http.addFilterBefore(new CORSFilter(), ChannelProcessingFilter.class);
 		
 		http.addFilterBefore(new APIKeyAuthFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -68,7 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	
 	/**
-	 * this is not working anyway for custom filters, need to figure it out!
+	 * 
 	 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {

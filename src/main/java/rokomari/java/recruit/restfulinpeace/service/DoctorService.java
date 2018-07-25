@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import rokomari.java.recruit.restfulinpeace.model.Doctor;
@@ -20,6 +21,7 @@ public class DoctorService {
 	 * @param doctor
 	 * @return
 	 */
+
 	public Doctor save(Doctor doctor) {
 		return doctorRepository.save(doctor);
 	}
@@ -29,6 +31,7 @@ public class DoctorService {
 	 * @param doctor
 	 * @return
 	 */
+
 	public Doctor update(Doctor doctor) {
 		return doctorRepository.save(doctor);
 	}
@@ -37,6 +40,7 @@ public class DoctorService {
 	/**
 	 * @return
 	 */
+
 	public void delete(Long id) {
 		doctorRepository.deleteById(id);
 	}
@@ -45,6 +49,7 @@ public class DoctorService {
 	/**
 	 * @return
 	 */
+
 	public List<Doctor> getAll(){
 		return (List<Doctor>) doctorRepository.findAll();
 	}
@@ -55,6 +60,7 @@ public class DoctorService {
 	 * @param id
 	 * @return
 	 */
+
 	public Optional<Doctor> findOne(Long id) {
 		return doctorRepository.findById(id);
 	}
