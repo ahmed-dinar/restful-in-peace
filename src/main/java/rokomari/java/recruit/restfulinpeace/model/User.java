@@ -2,6 +2,7 @@ package rokomari.java.recruit.restfulinpeace.model;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,11 +17,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
 import javax.persistence.JoinColumn;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
@@ -43,19 +49,30 @@ public class User {
 	private String last_name;
 	
 	@Column
-	@Email()
+	@Email(message = "*Please provide a valid Email")
+	@NotEmpty(message = "Email required")
 	private String email;
 	
 	@Column
 	@NotNull
+	@Length(max = 20)
+	@Pattern(regexp = "^[0-9]+$", message = "Mobile number is invalid")
 	private String mobile;
 	
+	
+	// great! password lenght and pattern does not work after hash the passoword  : (
 	@Column
 	@NotNull
+	//@Length(min = 3, max = 30)
+	//@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "only alphabet and numeric characters are allowed")
 	private String password;
 	
-	@Column(name="verify_url", nullable = false, columnDefinition = "varchar(255) default 'anything can be'")
-	private String verify_url;
+	
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+	@Column(name="verify_url", nullable = false, columnDefinition = "varchar(255)")
+	private UUID verify_url;
+	
 	
 	@NotNull
 	@Column(columnDefinition = "TINYINT(1) default 0")
@@ -110,10 +127,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getVerify_url() {
+	public UUID getVerify_url() {
 		return verify_url;
 	}
-	public void setVerify_url(String verify_url) {
+	public void setVerify_url(UUID verify_url) {
 		this.verify_url = verify_url;
 	}
 	public boolean getVerified() {

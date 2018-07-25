@@ -1,5 +1,7 @@
 package rokomari.java.recruit.restfulinpeace.security.config;
 
+
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 
 @Configuration
 @EnableWebSecurity
@@ -45,7 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new JwtAuthenticationFilter();
 	}
 	
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	
@@ -56,6 +58,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.anyRequest().authenticated()
 		.and().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		
+		//K, leave the cors for now!
+		//http.addFilterBefore(new CORSFilter(), ChannelProcessingFilter.class);
 		
 		http.addFilterBefore(new APIKeyAuthFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

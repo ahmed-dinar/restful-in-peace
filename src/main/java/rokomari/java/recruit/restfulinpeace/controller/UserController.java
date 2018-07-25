@@ -1,15 +1,24 @@
 package rokomari.java.recruit.restfulinpeace.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import rokomari.java.recruit.restfulinpeace.lib.Messages;
@@ -27,27 +36,36 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/register", method = RequestMethod.POST)
+	@RequestMapping(value="/register", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> registerUser(@Valid @RequestBody User user) {
 		
-		//should replace with custom validatsor annotation
+		//should replace with custom  annotation
 		User usrExists = userService.findbyEmail(user.getEmail());
 		
 		if( usrExists != null && usrExists.getId() != null ) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(messages.json("400","Email already exixts"));
 		}
-		
+
 		userService.save(user);
-		return ResponseEntity.ok().body("{ \"status\": \"success\" }");
+		
+		JsonNode results = new ObjectMapper().createObjectNode();
+		((ObjectNode) results).put("first_name", user.getFirst_name());
+		((ObjectNode) results).put("last_name", user.getLast_name());
+		((ObjectNode) results).put("email", user.getEmail());
+		((ObjectNode) results).put("mobile", user.getMobile());
+		((ObjectNode) results).put("status", "success");
+		
+		return new ResponseEntity<Object>(results, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value="/user/all", method = RequestMethod.GET)
 	public List<User> findAll() {
 		return (List<User>) userService.getAll();
 	}
 	
-	
-/*	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Optional<User>> getUserById(@PathVariable(value="id") Long id) {
 		Optional<User> user = userService.findOne(id);
 		
@@ -57,5 +75,4 @@ public class UserController {
 		
 		return ResponseEntity.ok().body(user);
 	}
-	*/
 }
