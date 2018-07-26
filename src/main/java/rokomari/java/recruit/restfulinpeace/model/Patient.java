@@ -1,6 +1,7 @@
 package rokomari.java.recruit.restfulinpeace.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,10 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.LastModifiedDate;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="patient")
@@ -54,12 +59,18 @@ public class Patient {
 	@LastModifiedDate
 	private Date created;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinTable(name = "doctor_appointment",
-		joinColumns = { @JoinColumn(name = "patient_id", referencedColumnName="id") },
-		inverseJoinColumns = { @JoinColumn(name = "doctor_id", referencedColumnName="id") })
-	private Set<Appointment> appointments;
-	
+	@JsonIgnore
+	@ManyToMany(mappedBy="patients", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	private Set<Doctor> doctors;
+
+
+	public Set<Doctor> getDoctors() {
+		return doctors;
+	}
+
+	public void setDoctors(Set<Doctor> doctors) {
+		this.doctors = doctors;
+	}
 
 	public Long getId() {
 		return id;
@@ -125,12 +136,6 @@ public class Patient {
 		this.created = created;
 	}
 	
-	public Set<Appointment> getAppointments() {
-		return appointments;
-	}
 
-	public void setAppointments(Set<Appointment> appointments) {
-		this.appointments = appointments;
-	}
 
 }
