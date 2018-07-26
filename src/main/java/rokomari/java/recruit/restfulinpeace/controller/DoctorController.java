@@ -124,44 +124,7 @@ public class DoctorController {
 		
 		return ResponseEntity.ok().body(doctor);
 	}
-	
-	@PreAuthorize ("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/doctors/appointments", method = RequestMethod.GET)
-	public ResponseEntity<Object> findAppointments(@RequestHeader HttpHeaders headers) {
-		
-	
-		List<String> id = headers.get("doctor_id");
-		Long doctor_id = null;
-		
-		//no doctor_id provided, so just return all doctor list
-		if(id == null || id.size() == 0) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.json("404", "no data found"));
-		}
-		
-		
-		try {
-			doctor_id = Long.parseLong(id.get(0));
-		}
-		catch (NumberFormatException e) {
-			System.out.println(e);
-			return ResponseEntity.notFound().build();
-		}
-		
-		Optional<Doctor> doctor = doctorService.findOne(doctor_id);
-		
-		if(doctor == null || !doctor.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.json("404", "no data found"));
-		}
-		
-		
-		return ResponseEntity.ok().body(doctor.get().getPatients());
-	}
-	
-	
-	
-	
-	
-	
-	
+
+
 	
 }

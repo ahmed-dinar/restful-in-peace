@@ -2,6 +2,7 @@ package rokomari.java.recruit.restfulinpeace.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -29,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="doctor")
 public class Doctor {
 
-	@Column
+	@Column(nullable=false)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -50,19 +51,11 @@ public class Doctor {
 	@LastModifiedDate
 	private Date created;
 	
-	@JsonIgnore
-	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinTable(name="appointment", joinColumns= {@JoinColumn(name="doctor_id")},  inverseJoinColumns= {@JoinColumn(name="patient_id")})
-	private Set<Patient> patients;
+	
+	@OneToMany(mappedBy = "doctor")
+    private Set<Appointment> appointments;
 	
 
-	public Set<Patient> getPatients() {
-		return patients;
-	}
-
-	public void setPatients(Set<Patient> patients) {
-		this.patients = patients;
-	}
 
 	public Long getId() {
 		return id;

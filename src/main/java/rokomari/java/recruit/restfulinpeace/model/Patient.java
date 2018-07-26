@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,19 +59,11 @@ public class Patient {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date created;
+
+
+	@OneToMany(mappedBy = "patient")
+    private Set<Appointment> appointments;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy="patients", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	private Set<Doctor> doctors;
-
-
-	public Set<Doctor> getDoctors() {
-		return doctors;
-	}
-
-	public void setDoctors(Set<Doctor> doctors) {
-		this.doctors = doctors;
-	}
 
 	public Long getId() {
 		return id;
