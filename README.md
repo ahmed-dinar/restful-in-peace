@@ -21,3 +21,78 @@
 | IDE  | Spring Tool Suite |
 | DOC  | Swagger |
 
+##### Additional Documentation
+&nbsp;
+> ``/api/insert/appointment/new``
+
+```
+Body:
+{
+    "doctor_id": 1,
+    "patient_id": 1,
+    "prescription": "",
+    "date_time": "31-07-2018 10:00:00"
+}
+```
+```
+Response:
+{
+    "status": "success"
+}
+```
+
+> ``/api/appointments``
+```C
+Response:
+// List of all appointments
+```
+
+> ``/api/appointments``
+```
+Header:
+{
+    "doctor_id": 1
+}
+```
+```C
+Response:
+[] // List of all appointments of a specific doctor
+```
+
+> ``/api/appointments``
+```
+Header:
+{
+    "patient_id": 1
+}
+```
+```C
+Response:
+[] // List of all appointments of a specific patient
+```
+
+> ``/api/appointments``
+```
+Header:
+{
+    "doctor_id": 1,
+    "patient_id": 1
+}
+```
+```C
+Response:
+[] // List of all appointments between a specific doctor & a specific patient
+```
+
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+&copy; MIT
+
+
+
+
+
+

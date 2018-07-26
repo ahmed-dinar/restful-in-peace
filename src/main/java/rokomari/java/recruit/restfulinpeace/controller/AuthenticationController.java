@@ -55,7 +55,7 @@ public class AuthenticationController {
         User user = userService.findbyEmail(login.getEmail());
 
         ObjectMapper mapper = new ObjectMapper();
-        ObjectNode companyNode = mapper.createObjectNode();
+        ObjectNode userNode = mapper.createObjectNode();
         
         //remove id from role array
         //https://stackoverflow.com/a/15604304
@@ -65,16 +65,16 @@ public class AuthenticationController {
         	object.remove("id");
         }
 
-		companyNode.put("status", "logged_in");
-		companyNode.put("first_names", user.getFirst_name());
-		companyNode.put("email", user.getEmail());
-		companyNode.putArray("roles").addAll(array);
+        userNode.put("status", "logged_in");
+        userNode.put("first_names", user.getFirst_name());
+        userNode.put("email", user.getEmail());
+        userNode.putArray("roles").addAll(array);
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.CONTENT_TYPE, "application/json; charset=UTF-8");
 		headers.add("jwt_token", token);
 
-        return ResponseEntity.ok().headers(headers).body(companyNode);
+        return ResponseEntity.ok().headers(headers).body(userNode);
     }
     
     

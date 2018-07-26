@@ -1,26 +1,21 @@
 package rokomari.java.recruit.restfulinpeace.model;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="appointment")
@@ -31,24 +26,19 @@ public class Appointment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	
-	public String getDoctor_id() {
-		return doctor_id;
-	}
-
-	public void setDoctor_id(String doctor_id) {
-		this.doctor_id = doctor_id;
-	}
-
+	@NotNull
 	@Column(name = "doctor_id", nullable=false)
-	private String doctor_id;
+	private Long doctor_id;
 	
+	@NotNull
 	@Column(name = "patient_id", nullable=false)
-	private String patient_id;
+	private Long patient_id;
 	
 	
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
+	@Future
+	@JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date date_time;
 	
 	@Column
@@ -64,7 +54,13 @@ public class Appointment {
 	@JoinColumn(name = "patient_id", referencedColumnName="id", nullable = false, updatable = false, insertable = false)
 	private Patient patient;
 
+	public Long getDoctor_id() {
+		return doctor_id;
+	}
 
+	public void setDoctor_id(Long doctor_id) {
+		this.doctor_id = doctor_id;
+	}
 
 	public Patient getPatient() {
 		return patient;
@@ -74,19 +70,19 @@ public class Appointment {
 		this.patient = patient;
 	}
 
-	public Doctor getDoctors() {
+	public Doctor getDoctor() {
 		return doctor;
 	}
 
-	public void setDoctors(Doctor doctor) {
+	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
 
-	public String getPatient_id() {
+	public Long getPatient_id() {
 		return patient_id;
 	}
 
-	public void setPatient_id(String patient_id) {
+	public void setPatient_id(Long patient_id) {
 		this.patient_id = patient_id;
 	}
 

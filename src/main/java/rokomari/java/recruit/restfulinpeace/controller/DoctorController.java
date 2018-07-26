@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import rokomari.java.recruit.restfulinpeace.lib.Helper;
 import rokomari.java.recruit.restfulinpeace.lib.Messages;
 import rokomari.java.recruit.restfulinpeace.model.Doctor;
-import rokomari.java.recruit.restfulinpeace.model.Patient;
 import rokomari.java.recruit.restfulinpeace.service.DoctorService;
 
 @RestController
@@ -42,22 +42,13 @@ public class DoctorController {
 	@RequestMapping(value="/delete/doctors", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> deleteDoctor(@RequestHeader HttpHeaders headers) {
 		
-		List<String> id = headers.get("doctor_id");
-		Long doctor_id = null;
+		Long doctorId = Helper.hasValidId(headers.get("doctor_id"));
 		
-		if(id == null || id.size() == 0) {
+		if(doctorId == -1) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
 		}
 		
-		try {
-			doctor_id = Long.parseLong(id.get(0));
-		}
-		catch (NumberFormatException e) {
-			System.out.println(e);
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
-		}
-		
-		doctorService.delete(doctor_id);
+		doctorService.delete(doctorId);
 		return ResponseEntity.ok().body("{ \"status\": \"deleted\" }");
 	}
 	
