@@ -33,107 +33,103 @@ import rokomari.java.recruit.restfulinpeace.service.UserService;
 @RestController
 @RequestMapping("/api")
 public class RoleController {
-	
+
 	@Autowired
-    Messages messages;
+	Messages messages;
 
 	@Autowired
 	private RoleService roleService;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private UserRoleService userRoleService;
-	
-	
-	@PreAuthorize ("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/roles", method = RequestMethod.GET)
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value = "/roles", method = RequestMethod.GET)
 	public ResponseEntity<Object> getRoles(@RequestHeader HttpHeaders headers) {
-		
+
 		Long userId = Helper.hasValidId(headers.get("user_id"));
-		
-		//no user_id provided, so just return all role list
-		if(userId == -1) {
+
+		// no user_id provided, so just return all role list
+		if (userId == -1) {
 			List<Role> roles = roleService.getAll();
 			return new ResponseEntity<Object>(roles, HttpStatus.OK);
 		}
 
 		Optional<User> userObj = userService.findOne(userId);
-		
-		if(userObj == null || !userObj.isPresent()) {
+
+		if (userObj == null || !userObj.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
 		}
-		
+
 		List<UserRole> userRoles = userRoleService.userRoles(userId);
 		ObjectMapper mapper = new ObjectMapper();
-		ArrayNode array =  mapper.valueToTree(userRoles);
-		
-        for (JsonNode uroleNode : array) {
-        	ObjectNode object = (ObjectNode) uroleNode;
-        	object.put("name", uroleNode.get("role").get("name").textValue());
-        	object.put("status", uroleNode.get("role").get("status").textValue());
-        	object.remove("userId");
-        	object.remove("roleId");
-        	object.remove("role");
-        }
-		
+		ArrayNode array = mapper.valueToTree(userRoles);
+
+		for (JsonNode uroleNode : array) {
+			ObjectNode object = (ObjectNode) uroleNode;
+			object.put("name", uroleNode.get("role").get("name").textValue());
+			object.put("status", uroleNode.get("role").get("status").textValue());
+			object.remove("userId");
+			object.remove("roleId");
+			object.remove("role");
+		}
+
 		User user = userObj.get();
 		ObjectNode roleNode = mapper.createObjectNode();
-		
+
 		roleNode.put("first_name", user.getFirst_name());
 		roleNode.put("email", user.getFirst_name());
 		roleNode.put("mobile", user.getFirst_name());
-		roleNode.putArray("roles").addAll(array);	
+		roleNode.putArray("roles").addAll(array);
 
 		return ResponseEntity.ok().body(roleNode);
 	}
-	
-	
-	@PreAuthorize ("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/insert/userrole/new", method = RequestMethod.POST)
-	public ResponseEntity<Object> addUserRole(@Valid @RequestBody UserRole userRole, @RequestHeader HttpHeaders headers) {
-		
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value = "/insert/userrole/new", method = RequestMethod.POST)
+	public ResponseEntity<Object> addUserRole(@Valid @RequestBody UserRole userRole,
+			@RequestHeader HttpHeaders headers) {
+
 		userRoleService.save(userRole);
 		return ResponseEntity.ok().body("{ \"status\": \"success\" }");
 	}
-	
 
-	@PreAuthorize ("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/delete/userrole", method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value = "/delete/userrole", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> deleteUserRole(@RequestHeader HttpHeaders headers) {
-		
+
 		Long roleId = Helper.hasValidId(headers.get("role_id"));
-		
-		if(roleId == -1) {
+
+		if (roleId == -1) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
 		}
-		
+
 		userRoleService.delete(roleId);
 		return ResponseEntity.ok().body("{ \"status\": \"deleted\" }");
 	}
-	
-	
-	@PreAuthorize ("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/insert/role/new", method = RequestMethod.POST)
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value = "/insert/role/new", method = RequestMethod.POST)
 	public ResponseEntity<Object> addRole(@Valid @RequestBody Role role, @RequestHeader HttpHeaders headers) {
 		roleService.save(role);
 		return ResponseEntity.ok().body("{ \"status\": \"success\" }");
 	}
-	
-	
-	@PreAuthorize ("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/delete/roles", method = RequestMethod.DELETE)
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value = "/delete/roles", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> deleteRole(@RequestHeader HttpHeaders headers) {
-		
+
 		Long roleId = Helper.hasValidId(headers.get("role_id"));
-		
-		if(roleId == -1) {
+
+		if (roleId == -1) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
 		}
-		
+
 		roleService.delete(roleId);
 		return ResponseEntity.ok().body("{ \"status\": \"deleted\" }");
 	}
-	
+
 }

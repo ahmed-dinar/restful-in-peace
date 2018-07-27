@@ -9,24 +9,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="user_role")
+@Table(name = "user_role")
 public class UserRole {
 
 	@Column
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(name = "user_id")
 	private Long userId;
-	
+
 	@Column(name = "role_id")
 	private Long roleId;
-	
-	@ManyToOne(optional=false)
-	@JoinColumn(name = "role_id", referencedColumnName="id", nullable = false, updatable = false, insertable = false)
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
 	private Role role;
 
 	public Role getRole() {
@@ -44,7 +43,6 @@ public class UserRole {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public Long getUserId() {
 		return userId;

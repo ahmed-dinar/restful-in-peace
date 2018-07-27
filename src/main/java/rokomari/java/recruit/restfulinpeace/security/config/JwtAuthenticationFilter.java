@@ -35,7 +35,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		String header = req.getHeader(HEADER_STRING);
 		String username = null;
 		String authToken = header;
-		
+
 		logger.info("JWT = " + authToken);
 
 		try {
@@ -53,13 +53,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
 			if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-				
+
 				UsernamePasswordAuthenticationToken authentication = jwtTokenUtil.getAuthentication(authToken,
 						SecurityContextHolder.getContext().getAuthentication(), userDetails);
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
-				
+
 				logger.info("authenticated user " + username + ", setting security context");
-				
+
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 		}

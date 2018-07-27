@@ -1,6 +1,8 @@
 # RESTful in Peace
 
 ##### [Database Schema File](https://github.com/ahmed-dinar/restful-in-peace/blob/master/database_schema.sql)
+
+##### [Swagger Documentation](https://ahmed-dinar.github.io/restful-in-peace)
 &nbsp;
 
 > ATTENTION!: After registration please insert a role named `ADMIN` in `role` table & user id in table `user_role` with the admin role id , otherwise `create, delete & update` of some endpoints will not work & without admin role.

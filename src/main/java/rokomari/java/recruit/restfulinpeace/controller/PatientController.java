@@ -24,98 +24,91 @@ import rokomari.java.recruit.restfulinpeace.service.PatientService;
 @RestController
 @RequestMapping("/api")
 public class PatientController {
-	
-	
+
 	@Autowired
-    Messages messages;
-	
+	Messages messages;
+
 	@Autowired
 	private PatientService patientService;
 
-	@PreAuthorize ("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/insert/patient/new", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value = "/insert/patient/new", method = RequestMethod.POST)
 	public ResponseEntity<Object> createPatient(@Valid @RequestBody Patient patient) {
 		patientService.save(patient);
 		return ResponseEntity.ok().body("{ \"status\": \"success\" }");
 	}
-	
 
-	@PreAuthorize ("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/delete/patients", method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value = "/delete/patients", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> deletePatient(@RequestHeader HttpHeaders headers) {
-		
+
 		List<String> id = headers.get("patient_id");
 		Long patient_id = null;
-		
-		if(id == null || id.size() == 0) {
+
+		if (id == null || id.size() == 0) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
 		}
-		
+
 		try {
 			patient_id = Long.parseLong(id.get(0));
-		}
-		catch (NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			System.out.println(e);
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
 		}
-		
+
 		patientService.delete(patient_id);
 		return ResponseEntity.ok().body("{ \"status\": \"deleted\" }");
 	}
-	
-	
-	@PreAuthorize ("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/update/patients", method = RequestMethod.PUT)
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value = "/update/patients", method = RequestMethod.PUT)
 	public ResponseEntity<Object> update(@Valid @RequestBody Patient patient, @RequestHeader HttpHeaders headers) {
-		
+
 		List<String> id = headers.get("patient_id");
 		Long patient_id = null;
-		
-		if(id == null || id.size() == 0 || patient == null) {
+
+		if (id == null || id.size() == 0 || patient == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.json("404", "patient id required"));
 		}
-		
+
 		try {
 			patient_id = Long.parseLong(id.get(0));
-		}
-		catch (NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			System.out.println(e);
 			return ResponseEntity.notFound().build();
 		}
-		
+
 		// there must be a better way!!
 		Optional<Patient> docexists = patientService.findOne(patient_id);
-		
-	
-		if( docexists == null || !docexists.isPresent() ) {
+
+		if (docexists == null || !docexists.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.json("404", "no data found to update"));
 		}
-		
+
 		patient.setId(patient_id);
 		patientService.save(patient);
 		return ResponseEntity.ok().body("{ \"status\": \"updated\" }");
 	}
-	
-	
-	@PreAuthorize ("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-	@RequestMapping(value="/patients", method = RequestMethod.GET)
+
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+	@RequestMapping(value = "/patients", method = RequestMethod.GET)
 	public ResponseEntity<Object> findOne(@RequestHeader HttpHeaders headers) {
-		
+
 		Long patientId = Helper.hasValidId(headers.get("patient_id"));
 
-		//no patient_id provided, so just return all patien list
-		if(patientId == -1) {
+		// no patient_id provided, so just return all patien list
+		if (patientId == -1) {
 			List<Patient> patients = patientService.getAll();
 			return new ResponseEntity<Object>(patients, HttpStatus.OK);
 		}
-		
+
 		Optional<Patient> patient = patientService.findOne(patientId);
-		
-		if( patient == null || !patient.isPresent()) {
+
+		if (patient == null || !patient.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.json("404", "no data found"));
 		}
-		
+
 		return ResponseEntity.ok().body(patient);
 	}
-	
+
 }

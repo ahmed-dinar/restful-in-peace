@@ -14,21 +14,19 @@ public class UserRoleService {
 
 	@Autowired
 	private UserRoleRepository userRoleRepository;
-	
-	public List<UserRole> userRoles(Long userId){
+
+	public List<UserRole> userRoles(Long userId) {
 		return userRoleRepository.findByUserId(userId);
 	}
-	
-	
-	public UserRole save(UserRole userRole){
+
+	public UserRole save(UserRole userRole) {
 		return userRoleRepository.save(userRole);
 	}
-	
-	public void delete(Long roleId){
+
+	public void delete(Long roleId) {
 		userRoleRepository.deleteById(roleId);
 	}
-	
-	
+
 	public Optional<UserRole> findOne(Long roleId) {
 		return userRoleRepository.findById(roleId);
 	}

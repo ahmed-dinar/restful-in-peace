@@ -9,5 +9,5 @@ import rokomari.java.recruit.restfulinpeace.model.UserRole;
 public interface UserRoleRepository extends CrudRepository<UserRole, Long> {
 
 	List<UserRole> findByUserId(Long userId);
-	
+
 }

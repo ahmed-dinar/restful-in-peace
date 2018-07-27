@@ -18,40 +18,37 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name="appointment")
+@Table(name = "appointment")
 public class Appointment {
 
 	@Column
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@NotNull
-	@Column(name = "doctor_id", nullable=false)
+	@Column(name = "doctor_id", nullable = false)
 	private Long doctor_id;
-	
+
 	@NotNull
-	@Column(name = "patient_id", nullable=false)
+	@Column(name = "patient_id", nullable = false)
 	private Long patient_id;
-	
-	
+
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	@Future
 	@JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date date_time;
-	
+
 	@Column
 	private String prescription;
-	
 
-	@ManyToOne(optional=false)
-	@JoinColumn(name = "doctor_id", referencedColumnName="id", nullable = false, updatable = false, insertable = false)
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "doctor_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
 	private Doctor doctor;
-	
-	
-	@ManyToOne(optional=false)
-	@JoinColumn(name = "patient_id", referencedColumnName="id", nullable = false, updatable = false, insertable = false)
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "patient_id", referencedColumnName = "id", nullable = false, updatable = false, insertable = false)
 	private Patient patient;
 
 	public Long getDoctor_id() {
@@ -109,5 +106,5 @@ public class Appointment {
 	public void setDate_time(Date date_time) {
 		this.date_time = date_time;
 	}
-	
+
 }

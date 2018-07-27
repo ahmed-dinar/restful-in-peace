@@ -23,11 +23,9 @@ public class Role {
 
 	@Column
 	private String status;
-	
+
 	@OneToMany(mappedBy = "role")
-    private Set<UserRole> userRoles;
-	
-	
+	private Set<UserRole> userRoles;
 
 	public long getId() {
 		return id;

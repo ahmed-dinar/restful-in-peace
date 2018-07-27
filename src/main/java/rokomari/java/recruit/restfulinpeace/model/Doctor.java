@@ -19,35 +19,32 @@ import org.springframework.data.annotation.LastModifiedDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name="doctor")
+@Table(name = "doctor")
 public class Doctor {
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable = false, columnDefinition = "varchar(255)")
 	private String name;
-	
+
 	@Column(nullable = false, columnDefinition = "varchar(150)")
 	private String dept;
-	
+
 	@Column
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date joining;
-	
+
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date created;
-	
-	
-	@OneToMany(mappedBy = "doctor")
-    private Set<Appointment> appointments;
-	
 
+	@OneToMany(mappedBy = "doctor")
+	private Set<Appointment> appointments;
 
 	public Long getId() {
 		return id;
@@ -88,7 +85,5 @@ public class Doctor {
 	public void setCreated(Date created) {
 		this.created = created;
 	}
-	
 
-	
 }

@@ -1,11 +1,12 @@
 package rokomari.java.recruit.restfulinpeace.model;
 
 public class ApiKey {
-	
+
 	private String key;
-	
-	public ApiKey() {}
-	
+
+	public ApiKey() {
+	}
+
 	public ApiKey(String key) {
 		this.key = key;
 	}
@@ -17,5 +18,5 @@ public class ApiKey {
 	public void setKey(String key) {
 		this.key = key;
 	}
-	
+
 }

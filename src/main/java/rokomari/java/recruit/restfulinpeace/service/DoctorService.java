@@ -14,9 +14,10 @@ public class DoctorService {
 
 	@Autowired
 	DoctorRepository doctorRepository;
-	
+
 	/**
 	 * Create a new doctor
+	 * 
 	 * @param doctor
 	 * @return
 	 */
@@ -24,8 +25,7 @@ public class DoctorService {
 	public Doctor save(Doctor doctor) {
 		return doctorRepository.save(doctor);
 	}
-	
-	
+
 	/**
 	 * @param doctor
 	 * @return
@@ -34,8 +34,7 @@ public class DoctorService {
 	public Doctor update(Doctor doctor) {
 		return doctorRepository.save(doctor);
 	}
-	
-	
+
 	/**
 	 * @return
 	 */
@@ -43,17 +42,15 @@ public class DoctorService {
 	public void delete(Long id) {
 		doctorRepository.deleteById(id);
 	}
-	
-	
+
 	/**
 	 * @return
 	 */
 
-	public List<Doctor> getAll(){
+	public List<Doctor> getAll() {
 		return (List<Doctor>) doctorRepository.findAll();
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param id
@@ -63,6 +60,5 @@ public class DoctorService {
 	public Optional<Doctor> findOne(Long id) {
 		return doctorRepository.findById(id);
 	}
-	
-	
+
 }

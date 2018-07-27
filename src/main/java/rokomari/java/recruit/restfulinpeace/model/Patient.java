@@ -16,45 +16,42 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.LastModifiedDate;
 
-
 @Entity
-@Table(name="patient")
+@Table(name = "patient")
 public class Patient {
 
 	@Column
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable = false, columnDefinition = "varchar(255)")
 	private String name;
-	
+
 	@Column(nullable = false, columnDefinition = "varchar(20)")
 	private String mobile;
-	
+
 	@Column
-	@Type(type="org.hibernate.type.ShortType")
+	@Type(type = "org.hibernate.type.ShortType")
 	private Short age;
-	
+
 	@Column(nullable = false, columnDefinition = "varchar(15)")
 	private String gender;
-	
+
 	@Column(nullable = false, columnDefinition = "varchar(255)")
 	private String occupation;
-	
+
 	@Column
-	@Type(type="text")
+	@Type(type = "text")
 	private String symptom_summary;
-	
+
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date created;
 
-
 	@OneToMany(mappedBy = "patient")
-    private Set<Appointment> appointments;
-	
+	private Set<Appointment> appointments;
 
 	public Long getId() {
 		return id;
@@ -119,7 +116,5 @@ public class Patient {
 	public void setCreated(Date created) {
 		this.created = created;
 	}
-	
-
 
 }

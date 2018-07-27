@@ -10,5 +10,5 @@ public interface PatientRepository extends CrudRepository<Patient, Long> {
 
 	@Transactional
 	void deleteById(Long id);
-	
+
 }

@@ -11,24 +11,24 @@ import org.springframework.stereotype.Component;
 public class Messages {
 
 	@Autowired
-    private MessageSource messageSource;
-	
+	private MessageSource messageSource;
+
 	private MessageSourceAccessor accessor;
-	
+
 	@PostConstruct
-    private void init() {
-        accessor = new MessageSourceAccessor(messageSource);
-    }
-	
+	private void init() {
+		accessor = new MessageSourceAccessor(messageSource);
+	}
+
 	public String get(String code) {
-        return accessor.getMessage(code);
-    }
-	
+		return accessor.getMessage(code);
+	}
+
 	public String get(String code, Object[] data) {
-        return accessor.getMessage(code, data);
-    }
-	
+		return accessor.getMessage(code, data);
+	}
+
 	public String json(String code, String msg) {
-		return "{ \"status\": \""+ code +"\", \"message\": \""+msg+"\" }";
+		return "{ \"status\": \"" + code + "\", \"message\": \"" + msg + "\" }";
 	}
 }
