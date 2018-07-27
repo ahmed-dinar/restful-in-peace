@@ -1,4 +1,4 @@
-// from http://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
+/*// from http://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
 
 package rokomari.java.recruit.restfulinpeace.config;
 
@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -24,12 +23,12 @@ public class WebConfig implements WebMvcConfigurer  {
     }
 
     @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-    	
-    	System.out.println("setting swagger addResourceHandlers");
-    	
-        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("swagger-ui.html")
+          .addResourceLocations("classpath:/META-INF/resources/");
+     
+        registry.addResourceHandler("/webjars/**")
+          .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     @Bean
@@ -51,4 +50,4 @@ public class WebConfig implements WebMvcConfigurer  {
         registry.addRedirectViewController("/api/swagger-resources", "/swagger-resources");
     }
 
-}
+}*/
