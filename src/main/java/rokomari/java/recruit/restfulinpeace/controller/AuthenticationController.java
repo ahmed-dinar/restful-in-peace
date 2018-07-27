@@ -1,5 +1,7 @@
 package rokomari.java.recruit.restfulinpeace.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +20,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import rokomari.java.recruit.restfulinpeace.model.ApiKey;
 import rokomari.java.recruit.restfulinpeace.model.Login;
 import rokomari.java.recruit.restfulinpeace.model.User;
+import rokomari.java.recruit.restfulinpeace.model.UserRole;
 import rokomari.java.recruit.restfulinpeace.security.config.ApiKeyProvider;
 import rokomari.java.recruit.restfulinpeace.security.config.TokenProvider;
+import rokomari.java.recruit.restfulinpeace.service.UserRoleService;
 import rokomari.java.recruit.restfulinpeace.service.UserService;
 
 
@@ -37,6 +41,9 @@ public class AuthenticationController {
     @Autowired
 	private UserService userService;
     
+    @Autowired
+	private UserRoleService userRoleService;
+    
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody Login login) throws AuthenticationException {
@@ -48,7 +55,6 @@ public class AuthenticationController {
                 )
         );
 
-       
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = jwtTokenUtil.generateToken(authentication);
 
@@ -57,14 +63,19 @@ public class AuthenticationController {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode userNode = mapper.createObjectNode();
         
-        //remove id from role array
-        //https://stackoverflow.com/a/15604304
-        ArrayNode array =  mapper.valueToTree(user.getRoles());
-        for (JsonNode personNode : array) {
-        	ObjectNode object = (ObjectNode) personNode;
+        List<UserRole> userRoles = userRoleService.userRoles(user.getId());
+		ArrayNode array =  mapper.valueToTree(userRoles);
+		
+        for (JsonNode uroleNode : array) {
+        	ObjectNode object = (ObjectNode) uroleNode;
+        	object.put("name", uroleNode.get("role").get("name").textValue());
+        	object.put("status", uroleNode.get("role").get("status").textValue());
         	object.remove("id");
+        	object.remove("userId");
+        	object.remove("roleId");
+        	object.remove("role");
         }
-
+        
         userNode.put("status", "logged_in");
         userNode.put("first_names", user.getFirst_name());
         userNode.put("email", user.getEmail());

@@ -16,16 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import rokomari.java.recruit.restfulinpeace.lib.Helper;
 import rokomari.java.recruit.restfulinpeace.lib.Messages;
-import rokomari.java.recruit.restfulinpeace.model.Doctor;
 import rokomari.java.recruit.restfulinpeace.model.Role;
 import rokomari.java.recruit.restfulinpeace.model.User;
+import rokomari.java.recruit.restfulinpeace.model.UserRole;
 import rokomari.java.recruit.restfulinpeace.service.RoleService;
+import rokomari.java.recruit.restfulinpeace.service.UserRoleService;
 import rokomari.java.recruit.restfulinpeace.service.UserService;
 
 @RestController
@@ -40,6 +42,9 @@ public class RoleController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRoleService userRoleService;
 	
 	
 	@PreAuthorize ("hasRole('ROLE_ADMIN')")
@@ -60,16 +65,52 @@ public class RoleController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
 		}
 		
-		User user = userObj.get();
-
+		List<UserRole> userRoles = userRoleService.userRoles(userId);
 		ObjectMapper mapper = new ObjectMapper();
+		ArrayNode array =  mapper.valueToTree(userRoles);
+		
+        for (JsonNode uroleNode : array) {
+        	ObjectNode object = (ObjectNode) uroleNode;
+        	object.put("name", uroleNode.get("role").get("name").textValue());
+        	object.put("status", uroleNode.get("role").get("status").textValue());
+        	object.remove("userId");
+        	object.remove("roleId");
+        	object.remove("role");
+        }
+		
+		User user = userObj.get();
 		ObjectNode roleNode = mapper.createObjectNode();
+		
 		roleNode.put("first_name", user.getFirst_name());
-		roleNode.put("email", user.getEmail());
-		roleNode.put("mobile", user.getMobile());
-		roleNode.putArray("roles").addAll((ArrayNode)mapper.valueToTree(user.getRoles()));
+		roleNode.put("email", user.getFirst_name());
+		roleNode.put("mobile", user.getFirst_name());
+		roleNode.putArray("roles").addAll(array);	
 
 		return ResponseEntity.ok().body(roleNode);
+	}
+	
+	
+	@PreAuthorize ("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value="/insert/userrole/new", method = RequestMethod.POST)
+	public ResponseEntity<Object> addUserRole(@Valid @RequestBody UserRole userRole, @RequestHeader HttpHeaders headers) {
+		
+		userRoleService.save(userRole);
+		return ResponseEntity.ok().body("{ \"status\": \"success\" }");
+	}
+	
+
+	@PreAuthorize ("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value="/delete/userrole", method = RequestMethod.DELETE)
+	public ResponseEntity<Object> deleteUserRole(@RequestHeader HttpHeaders headers) {
+		
+		Long roleId = Helper.hasValidId(headers.get("role_id"));
+		
+		if(roleId == -1) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.get("http.response.404"));
+		}
+		
+		userRoleService.delete(roleId);
+		return ResponseEntity.ok().body("{ \"status\": \"deleted\" }");
 	}
 	
 	
@@ -94,13 +135,5 @@ public class RoleController {
 		roleService.delete(roleId);
 		return ResponseEntity.ok().body("{ \"status\": \"deleted\" }");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

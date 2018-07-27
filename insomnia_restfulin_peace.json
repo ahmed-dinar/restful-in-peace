@@ -1,0 +1,1233 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2018-07-27T15:23:16.583Z",
+	"__export_source": "insomnia.desktop.app:v6.0.1",
+	"resources": [
+		{
+			"_id": "wrk_16da4b57fda64cf880744d12656f665c",
+			"created": 1532445344567,
+			"description": "",
+			"modified": 1532445344567,
+			"name": "Insomnia",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_f63d6d3e15f341379902bad025ea1414",
+			"color": null,
+			"created": 1532445344627,
+			"data": {
+				"adminJWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQHJva29tYXJpLmNvbSIsInNjb3BlcyI6IlJPTEVfQURNSU4iLCJpYXQiOjE1MzI3MDMzMzksImV4cCI6MTUzNTI5NTMzOX0.B1lYclr5HinbO9TlDexd0Gze8NfhNDClt8aCfhO_LpQ",
+				"base": "http://localhost:8080",
+				"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzY29wZXMiLCJpc3MiOiJyb2tvbWFyaS5jb20iLCJpYXQiOjE1MzI1MzUxNTF9.GchNgm3ZZaiQaO7cIjtjQhTfshnWU5OaVWl9u7Pd9Gk",
+				"userJWT": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtb25pa2FAcm9rb21hcmkuY29tIiwic2NvcGVzIjoiUk9MRV9VU0VSIiwiaWF0IjoxNTMyNTM1NDE2LCJleHAiOjE1MzUxMjc0MTZ9.amfONg5vkqjDwYg4DwmTIfPksACoIWbZB6YKpq-z1oY"
+			},
+			"isPrivate": false,
+			"metaSortKey": 1532614605093,
+			"modified": 1532703350283,
+			"name": "New Environment",
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_e42d479715e24b6794dc4d0d9e03f99e",
+			"cookies": [],
+			"created": 1532445344788,
+			"modified": 1532445344788,
+			"name": "Default Jar",
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "req_04720186de504f488e2433d2ff48991b",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \"first_name\":\"John\",\n \"last_name\":\"Cena\",\n \"email\":\"john@rokomari.com\",\n \"mobile\":\"1233\",\n \"password\":\"attitudeadjustment\"\n}\n"
+			},
+			"created": 1532446462141,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_9147a2367a774ef9acd28dbcb29a9ffa",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_c2c0b0707eb8404187093423e11514ff",
+					"name": "token",
+					"value": "{{ token  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446486751,
+			"method": "POST",
+			"modified": 1532703183727,
+			"name": "Registration",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/register",
+			"_type": "request"
+		},
+		{
+			"_id": "req_f06ee2b99846415791a1cf2e08b441f1",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \"email\":\"john@rokomari.com\",\n\"password\":\"attitudeadjustment\"\n}\n"
+			},
+			"created": 1532446486700,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446486701,
+			"method": "POST",
+			"modified": 1532703413674,
+			"name": "Login",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/login",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d3a90b787efb44ce81e6b278a5341933",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \"name\":\"Dr. Starnge\",\n \"dept\":\"child_speacialist\",\n \"joining\":\"11-12-2016\"\n}"
+			},
+			"created": 1532446609192,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_35661204f44e49bdb43ae47b426d45be",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_107e2506dec24008a3a2fb4a5943e8ef",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483631,
+			"method": "POST",
+			"modified": 1532704003016,
+			"name": "Create Doctor",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/insert/doctor/new",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c44accda4b9c4a818a71ee839c75234d",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \"name\":\"Thanos\",\n \"mobile\":\"01011-000011\",\n \"age\":\"57\",\n \"gender\":\"male\",\n \"occupation\":\"Software Developer\",\n \"symptom_summary\":\" \"\n}"
+			},
+			"created": 1532446681407,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_35661204f44e49bdb43ae47b426d45be",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_107e2506dec24008a3a2fb4a5943e8ef",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483583.0312,
+			"method": "POST",
+			"modified": 1532704005592,
+			"name": "Create Patient",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/insert/patient/new",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a2434ee355a64863b1460ef031e87d22",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532446706933,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483535.0625,
+			"method": "GET",
+			"modified": 1532704010602,
+			"name": "Fetch All Doctors",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/doctors ",
+			"_type": "request"
+		},
+		{
+			"_id": "req_13e06315252a4352abf73c090ba1c00a",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532446760436,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483487.0938,
+			"method": "GET",
+			"modified": 1532704008621,
+			"name": "Fetch All Patients",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/patients",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b67830b84ebf41fa8960a6deca4d106a",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532446828903,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_d77adc1c2c6a463e9a3e80ab34edba6a",
+					"name": "patient_id",
+					"value": "6"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483307.211,
+			"method": "GET",
+			"modified": 1532703783776,
+			"name": "Get A Patient",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/patients",
+			"_type": "request"
+		},
+		{
+			"_id": "req_55db6fd46e8247279d67ca3974f6e47f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532446847460,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_611faeef1e7b4e7e8b3a08a228717171",
+					"name": "doctor_id",
+					"value": "5"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483367.1719,
+			"method": "GET",
+			"modified": 1532703778717,
+			"name": "Get A Doctor",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/doctors",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b8ea0b48310b4083bcdf3968d69391b2",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \"name\":\"Thanos\",\n \"mobile\":\"01011-000011\",\n \"age\":\"57\",\n \"gender\":\"male\",\n \"occupation\":\"Software Developer\",\n \"symptom_summary\":\" headache, pain\"\n}\n"
+			},
+			"created": 1532446868051,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_35661204f44e49bdb43ae47b426d45be",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_107e2506dec24008a3a2fb4a5943e8ef",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_839793bb0a4546b9b8e48a32d02eba09",
+					"name": "patient_id",
+					"value": "6"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483262.2402,
+			"method": "PUT",
+			"modified": 1532703830292,
+			"name": "Update Patient",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/update/patients",
+			"_type": "request"
+		},
+		{
+			"_id": "req_fd93f6a121f84c02a784fe486ae1617a",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \"name\":\"Dr. Starnge\",\n \"dept\":\"orthopedics\",\n \"joining\":\"11-12-2016\"\n}\n"
+			},
+			"created": 1532446895035,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_35661204f44e49bdb43ae47b426d45be",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_107e2506dec24008a3a2fb4a5943e8ef",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_839793bb0a4546b9b8e48a32d02eba09",
+					"name": "doctor_id",
+					"value": "5"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483277.2305,
+			"method": "PUT",
+			"modified": 1532703825670,
+			"name": "Update Doctor",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/update/doctors",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b175fdfae4584dfe9d328ef427ee19c8",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532446925034,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_35661204f44e49bdb43ae47b426d45be",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_107e2506dec24008a3a2fb4a5943e8ef",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_839793bb0a4546b9b8e48a32d02eba09",
+					"name": "patient_id",
+					"value": "6"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483256.619,
+			"method": "DELETE",
+			"modified": 1532704153782,
+			"name": "Delete Patient",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/delete/patients",
+			"_type": "request"
+		},
+		{
+			"_id": "req_11a5b23adfc84ffebc9281e25fc95406",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532446952620,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_35661204f44e49bdb43ae47b426d45be",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_107e2506dec24008a3a2fb4a5943e8ef",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_839793bb0a4546b9b8e48a32d02eba09",
+					"name": "doctor_id",
+					"value": "5"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483258.4927,
+			"method": "DELETE",
+			"modified": 1532704150578,
+			"name": "Delete Doctor",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/delete/doctors",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d4aa4cfa13f243b59ccd92c47d892c51",
+			"authentication": {},
+			"body": {},
+			"created": 1532538534063,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1532538534064,
+			"method": "GET",
+			"modified": 1532704937287,
+			"name": "Generate Api Key",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/apikey",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d5ba49c65a764b27907e5506fab1fac1",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532548056639,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.4478,
+			"method": "GET",
+			"modified": 1532704816068,
+			"name": "Fetch All Roles",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/roles ",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b1f181744d7b4a50a0d859a45920ecc9",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532614812169,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.9163,
+			"method": "GET",
+			"modified": 1532704396145,
+			"name": "Fetch All Appointments",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/appointments ",
+			"_type": "request"
+		},
+		{
+			"_id": "req_819e3e27adae4dd8a816e779b0288045",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n    \"doctor_id\": 8,\n    \"patient_id\": 9,\n    \"prescription\": \"\",\n    \"date_time\": \"31-07-2018 10:00:00\"\n}"
+			},
+			"created": 1532618058542,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_35661204f44e49bdb43ae47b426d45be",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_107e2506dec24008a3a2fb4a5943e8ef",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_feaf06a7729c45e3b0ff2c16daa198f8",
+					"name": "",
+					"value": ""
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483256.1504,
+			"method": "POST",
+			"modified": 1532704279627,
+			"name": "Create Appointment",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/insert/appointment/new",
+			"_type": "request"
+		},
+		{
+			"_id": "req_91cde60239ca453faf35f3d1be9669b5",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532620273513,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_d93e95e62e96473f99c814c28eede728",
+					"name": "appointment_id",
+					"value": "11"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.6858,
+			"method": "DELETE",
+			"modified": 1532704619186,
+			"name": "Delete Appointment",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/delete/appointments",
+			"_type": "request"
+		},
+		{
+			"_id": "req_794b54a07c114b6f84b35f463334a870",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"prescription\": \"Long Live!\"\n}"
+			},
+			"created": 1532621071418,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_d93e95e62e96473f99c814c28eede728",
+					"name": "appointment_id",
+					"value": "11"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.6895,
+			"method": "PUT",
+			"modified": 1532704617268,
+			"name": "Update Appointment",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/update/appointments",
+			"_type": "request"
+		},
+		{
+			"_id": "req_08d57d91bb0340b8a953821aad06bcae",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \"name\":\"MODERATE\",\n \"status\":\"ACTIVE\"\n}\n"
+			},
+			"created": 1532701682074,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_35661204f44e49bdb43ae47b426d45be",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_107e2506dec24008a3a2fb4a5943e8ef",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.6821,
+			"method": "POST",
+			"modified": 1532704813058,
+			"name": "Create Role",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/insert/role/new",
+			"_type": "request"
+		},
+		{
+			"_id": "req_6e6bf4ccec4240d5a0887ace5c8f6960",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n \"userId\": 2,\n \"roleId\": 13\n}\n"
+			},
+			"created": 1532701818201,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_35661204f44e49bdb43ae47b426d45be",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_107e2506dec24008a3a2fb4a5943e8ef",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.2136,
+			"method": "POST",
+			"modified": 1532704861574,
+			"name": "Create UserRole",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/insert/userrole/new",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b162c80cbf5747508b4dd40e74bba4f4",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532702197196,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_d93e95e62e96473f99c814c28eede728",
+					"name": "role_id",
+					"value": "15"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446482935.4531,
+			"method": "DELETE",
+			"modified": 1532704888654,
+			"name": "Delete User Role",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/delete/userrole",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7da812d572ee4ea48370331518f74100",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532702293114,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_d93e95e62e96473f99c814c28eede728",
+					"name": "role_id",
+					"value": "12"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.3306,
+			"method": "DELETE",
+			"modified": 1532704818395,
+			"name": "Delete Role",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/delete/roles",
+			"_type": "request"
+		},
+		{
+			"_id": "req_f283a419af864cf8a18f79edfb010687",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532704196145,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_21d94416314649fbb452f71ed35b0717",
+					"name": "user_id",
+					"value": "2"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483250.9976,
+			"method": "GET",
+			"modified": 1532704886647,
+			"name": "Fetch A User Roles",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/roles ",
+			"_type": "request"
+		},
+		{
+			"_id": "req_bf53824d5e0a45bb807e324f84939d9f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532704364987,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_4c62c72b24084a5f9356d21246d0bf54",
+					"name": "appointment_id",
+					"value": "11"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.7993,
+			"method": "GET",
+			"modified": 1532704467127,
+			"name": "Fetch A Appointment",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/appointments ",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c278b5597ef94bc299b3148c48b51090",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532704411523,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_4c62c72b24084a5f9356d21246d0bf54",
+					"name": "doctor_id",
+					"value": "8"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.7407,
+			"method": "GET",
+			"modified": 1532704587616,
+			"name": "Fetch Appointments of A Doctor",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/appointments ",
+			"_type": "request"
+		},
+		{
+			"_id": "req_8a0d77a3c99043318f5de50a1af64621",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532704468698,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_4c62c72b24084a5f9356d21246d0bf54",
+					"name": "patient_id",
+					"value": "9"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.7114,
+			"method": "GET",
+			"modified": 1532704524250,
+			"name": "Fetch Appointments of A Patient",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/appointments ",
+			"_type": "request"
+		},
+		{
+			"_id": "req_91b46d3a634d48f58b6c5040bd8aea3f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532704480241,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				},
+				{
+					"id": "pair_4c62c72b24084a5f9356d21246d0bf54",
+					"name": "doctor_id",
+					"value": "8"
+				},
+				{
+					"id": "pair_8798a99d74dc4d53b5e400b08bcf8aeb",
+					"name": "patient_id",
+					"value": "9"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446483255.6968,
+			"method": "GET",
+			"modified": 1532704613281,
+			"name": "Fetch Appointments between A Doctor &  A Patient",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/api/appointments ",
+			"_type": "request"
+		}
+	]
+}

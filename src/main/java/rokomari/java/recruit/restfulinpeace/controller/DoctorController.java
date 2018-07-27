@@ -56,30 +56,21 @@ public class DoctorController {
 	@RequestMapping(value="/update/doctors", method = RequestMethod.PUT)
 	public ResponseEntity<Object> update(@Valid @RequestBody Doctor doctor, @RequestHeader HttpHeaders headers) {
 		
-		List<String> id = headers.get("doctor_id");
-		Long doctor_id = null;
+		Long doctorId = Helper.hasValidId(headers.get("doctor_id"));
 		
-		if(id == null || id.size() == 0 || doctor == null) {
+		if(doctorId == -1) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.json("404", "doctor id required"));
 		}
 		
-		try {
-			doctor_id = Long.parseLong(id.get(0));
-		}
-		catch (NumberFormatException e) {
-			System.out.println(e);
-			return ResponseEntity.notFound().build();
-		}
-		
 		// there must be a better way!!
-		Optional<Doctor> docexists = doctorService.findOne(doctor_id);
+		Optional<Doctor> docexists = doctorService.findOne(doctorId);
 		
 	
 		if( docexists == null || !docexists.isPresent() ) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messages.json("404", "no data found to update"));
 		}
 		
-		doctor.setId(doctor_id);
+		doctor.setId(doctorId);
 		doctorService.save(doctor);
 		return ResponseEntity.ok().body("{ \"status\": \"updated\" }");
 	}
