@@ -78,7 +78,7 @@ public class UserController {
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/user/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Optional<User>> getUserById(@PathVariable(value="id") Long id) {
 		Optional<User> user = userService.findOne(id);
 		

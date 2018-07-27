@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2018-07-27T15:23:16.583Z",
+	"__export_date": "2018-07-27T19:10:24.924Z",
 	"__export_source": "insomnia.desktop.app:v6.0.1",
 	"resources": [
 		{
@@ -25,7 +25,7 @@
 			},
 			"isPrivate": false,
 			"metaSortKey": 1532614605093,
-			"modified": 1532703350283,
+			"modified": 1532718607636,
 			"name": "New Environment",
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
 			"_type": "environment"
@@ -63,7 +63,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446486751,
 			"method": "POST",
-			"modified": 1532703183727,
+			"modified": 1532718436282,
 			"name": "Registration",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -100,7 +100,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446486701,
 			"method": "POST",
-			"modified": 1532703413674,
+			"modified": 1532718441779,
 			"name": "Login",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -142,7 +142,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483631,
 			"method": "POST",
-			"modified": 1532704003016,
+			"modified": 1532718444780,
 			"name": "Create Doctor",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -184,7 +184,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483583.0312,
 			"method": "POST",
-			"modified": 1532704005592,
+			"modified": 1532718447637,
 			"name": "Create Patient",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -226,7 +226,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483535.0625,
 			"method": "GET",
-			"modified": 1532704010602,
+			"modified": 1532718459930,
 			"name": "Fetch All Doctors",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -268,7 +268,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483487.0938,
 			"method": "GET",
-			"modified": 1532704008621,
+			"modified": 1532718462346,
 			"name": "Fetch All Patients",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -309,13 +309,13 @@
 				{
 					"id": "pair_d77adc1c2c6a463e9a3e80ab34edba6a",
 					"name": "patient_id",
-					"value": "6"
+					"value": "9"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1532446483307.211,
 			"method": "GET",
-			"modified": 1532703783776,
+			"modified": 1532718479561,
 			"name": "Get A Patient",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -356,13 +356,13 @@
 				{
 					"id": "pair_611faeef1e7b4e7e8b3a08a228717171",
 					"name": "doctor_id",
-					"value": "5"
+					"value": "8"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1532446483367.1719,
 			"method": "GET",
-			"modified": 1532703778717,
+			"modified": 1532718466846,
 			"name": "Get A Doctor",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -403,13 +403,13 @@
 				{
 					"id": "pair_839793bb0a4546b9b8e48a32d02eba09",
 					"name": "patient_id",
-					"value": "6"
+					"value": "9"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1532446483262.2402,
 			"method": "PUT",
-			"modified": 1532703830292,
+			"modified": 1532718492363,
 			"name": "Update Patient",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -450,13 +450,13 @@
 				{
 					"id": "pair_839793bb0a4546b9b8e48a32d02eba09",
 					"name": "doctor_id",
-					"value": "5"
+					"value": "8"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1532446483277.2305,
 			"method": "PUT",
-			"modified": 1532703825670,
+			"modified": 1532718487910,
 			"name": "Update Doctor",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -503,7 +503,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483256.619,
 			"method": "DELETE",
-			"modified": 1532704153782,
+			"modified": 1532718497502,
 			"name": "Delete Patient",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -550,7 +550,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483258.4927,
 			"method": "DELETE",
-			"modified": 1532704150578,
+			"modified": 1532718496730,
 			"name": "Delete Doctor",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -573,7 +573,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532538534064,
 			"method": "GET",
-			"modified": 1532704937287,
+			"modified": 1532718430504,
 			"name": "Generate Api Key",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -615,7 +615,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.4478,
 			"method": "GET",
-			"modified": 1532704816068,
+			"modified": 1532718559982,
 			"name": "Fetch All Roles",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -657,7 +657,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.9163,
 			"method": "GET",
-			"modified": 1532704396145,
+			"modified": 1532718510333,
 			"name": "Fetch All Appointments",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -704,7 +704,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483256.1504,
 			"method": "POST",
-			"modified": 1532704279627,
+			"modified": 1532718498965,
 			"name": "Create Appointment",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -751,7 +751,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.6858,
 			"method": "DELETE",
-			"modified": 1532704619186,
+			"modified": 1532718549849,
 			"name": "Delete Appointment",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -769,7 +769,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"prescription\": \"Long Live!\"\n}"
+				"text": "{\n\t\"prescription\": \"Long Live !\"\n}"
 			},
 			"created": 1532621071418,
 			"description": "",
@@ -792,13 +792,13 @@
 				{
 					"id": "pair_d93e95e62e96473f99c814c28eede728",
 					"name": "appointment_id",
-					"value": "11"
+					"value": "19"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.6895,
 			"method": "PUT",
-			"modified": 1532704617268,
+			"modified": 1532718546433,
 			"name": "Update Appointment",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -840,7 +840,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.6821,
 			"method": "POST",
-			"modified": 1532704813058,
+			"modified": 1532718551124,
 			"name": "Create Role",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -882,7 +882,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.2136,
 			"method": "POST",
-			"modified": 1532704861574,
+			"modified": 1532718566602,
 			"name": "Create UserRole",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -923,13 +923,13 @@
 				{
 					"id": "pair_d93e95e62e96473f99c814c28eede728",
 					"name": "role_id",
-					"value": "15"
+					"value": "21"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1532446482935.4531,
 			"method": "DELETE",
-			"modified": 1532704888654,
+			"modified": 1532718581025,
 			"name": "Delete User Role",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -970,13 +970,13 @@
 				{
 					"id": "pair_d93e95e62e96473f99c814c28eede728",
 					"name": "role_id",
-					"value": "12"
+					"value": "20"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.3306,
 			"method": "DELETE",
-			"modified": 1532704818395,
+			"modified": 1532718563877,
 			"name": "Delete Role",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -1023,7 +1023,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483250.9976,
 			"method": "GET",
-			"modified": 1532704886647,
+			"modified": 1532718583602,
 			"name": "Fetch A User Roles",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -1064,13 +1064,13 @@
 				{
 					"id": "pair_4c62c72b24084a5f9356d21246d0bf54",
 					"name": "appointment_id",
-					"value": "11"
+					"value": "19"
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.7993,
 			"method": "GET",
-			"modified": 1532704467127,
+			"modified": 1532718514973,
 			"name": "Fetch A Appointment",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -1117,7 +1117,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.7407,
 			"method": "GET",
-			"modified": 1532704587616,
+			"modified": 1532718518495,
 			"name": "Fetch Appointments of A Doctor",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -1164,7 +1164,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.7114,
 			"method": "GET",
-			"modified": 1532704524250,
+			"modified": 1532718531380,
 			"name": "Fetch Appointments of A Patient",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -1216,7 +1216,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1532446483255.6968,
 			"method": "GET",
-			"modified": 1532704613281,
+			"modified": 1532718534387,
 			"name": "Fetch Appointments between A Doctor &  A Patient",
 			"parameters": [],
 			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
@@ -1227,6 +1227,90 @@
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
 			"url": "{{ base  }}/api/appointments ",
+			"_type": "request"
+		},
+		{
+			"_id": "req_afec5f3adbfe45c8bd333d3dcc54cd3a",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532716910999,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446482885.4531,
+			"method": "GET",
+			"modified": 1532718585812,
+			"name": "Fetch All Users",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/user/all",
+			"_type": "request"
+		},
+		{
+			"_id": "req_87d66709f0ec4bde8fe0cf3a9c6dc486",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"created": 1532717015152,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_152bc53c619b4790bbf8acc17baaf749",
+					"name": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"id": "pair_ac0bb338440543a5822fd88750f3b2b8",
+					"name": "token",
+					"value": "{{ token  }}"
+				},
+				{
+					"id": "pair_f62c6d3119ff4cadaa8a44711d9c9ede",
+					"name": "jwt_token",
+					"value": "{{ adminJWT  }}"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1532446482835.4531,
+			"method": "GET",
+			"modified": 1532718608046,
+			"name": "Fetch A User",
+			"parameters": [],
+			"parentId": "wrk_16da4b57fda64cf880744d12656f665c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ base  }}/user/2",
 			"_type": "request"
 		}
 	]
