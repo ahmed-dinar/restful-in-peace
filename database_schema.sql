@@ -1,17 +1,3 @@
--- Server version: 10.1.33-MariaDB
-
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `rokomari`
 --
@@ -42,23 +28,6 @@ CREATE TABLE `doctor` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Table structure for table `doctor_appointment`
---
-
-CREATE TABLE `doctor_appointment` (
-  `id` bigint(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `hibernate_sequence`
---
-
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `patient`
@@ -122,9 +91,9 @@ ALTER TABLE `doctor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `doctor_appointment`
+-- Indexes for table `appointment`
 --
-ALTER TABLE `doctor_appointment`
+ALTER TABLE `appointment`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -143,6 +112,12 @@ ALTER TABLE `role`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+  
+--
+-- Indexes for table `user_role`
+--
+ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
 
@@ -181,11 +156,3 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
---
--- Constraints for dumped tables
---
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
